@@ -1,0 +1,52 @@
+body {
+    margin: 0 auto;
+    height: 100vh;
+}
+.align {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+#container {
+    height: fit-content;
+    width: fit-content;
+    border: solid black;
+}
+
+.boxLine,
+.boxColumn {
+    display: flex;
+    justify-content: space-evenly;
+    height: 600px;
+    width: 600px;
+}
+
+.boxLine {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+
+.lines,
+.columns {
+    border: solid black 0.5px; 
+}
+
+
+#container2 {
+    display: flex;
+    border: solid black;
+    height: 200px;
+    width: 200px;
+    margin-left: 5px;
+}
+
+.square {
+    flex-grow: 1;
+    border: solid black;
+}
