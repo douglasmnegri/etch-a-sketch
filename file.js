@@ -1,7 +1,28 @@
 const container = document.querySelector('#container');
-const button = document.querySelector('#gridnumber');
+const buttonGrid = document.querySelector('#gridnumber');
 const buttonReset = document.querySelector('#gridreset');
+const buttonColor = document.querySelector('#randomcolor')
 const row = document.querySelector('.row');
+
+buttonColor.addEventListener('click', () => {
+  if(buttonColor.classList.contains('.randomize')) {
+    buttonColor.classList.remove('.randomize');
+    buttonColor.removeAttribute('style', `background: #e5e5e5; 
+    outline: none; 
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    box-shadow: inset 0px 0px 5px #c1c1c1;`
+    )
+  }
+  else {
+    buttonColor.classList.add('.randomize');
+    buttonColor.setAttribute('style', `background: #00BFFF; 
+    outline: none; 
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    box-shadow: inset 0px 0px 5px #c1c1c1;`)
+  }
+});
 
 buttonReset.addEventListener('click', ()=> {
   function removeAllChildNodes(parent) {
@@ -9,11 +30,12 @@ buttonReset.addEventListener('click', ()=> {
         parent.removeChild(parent.firstChild);
     }
 }
-removeAllChildNodes(container);
+const container = document.querySelector('#container');
+removeAllChildNodes(container)
 });
 
 
-button.addEventListener('click', () => {
+buttonGrid.addEventListener('click', () => {
 const numBox = prompt("What's the grid size?");
 
 if(numBox <= 100 && document.querySelector('.box') < 10000) {
@@ -39,8 +61,17 @@ const square = document.querySelectorAll('.box');
 
 square.forEach((div) => {
   div.addEventListener('mouseover', () => { 
-    div.classList.add('paint');
-  });
-});
+    const colors = [];
 
+    if(buttonColor.classList.contains('.randomize')) {
+      for(let i = 0; i < 10; i ++) {
+        const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+        div.setAttribute('style', `background-color: ${randomColor};`);
+      }
+  }
+    else {
+      div.classList.add('paint');
+      }
+    });
+  });
 });
