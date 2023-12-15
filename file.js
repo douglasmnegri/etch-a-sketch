@@ -1,5 +1,11 @@
 const container = document.querySelector('#container');
+const button = document.querySelector('#gridnumber');
 
+
+button.addEventListener('click', () => {
+const numBox = prompt("What's the grid size?");
+
+if(numBox <= 100 && document.querySelector('.box') < 10000) {
 function createBoxes(numBox) {
     for (let i = 0; i < numBox; i++) {
       const row = document.createElement('div');
@@ -10,24 +16,20 @@ function createBoxes(numBox) {
         const square = document.createElement('div');
         square.className = 'box';
         row.appendChild(square);
-      }
-    }
+      };
+    };
   }
-  
-  
-  createBoxes(50);
+};
 
-  /* Learning .forEach()
-  const companyNames = ["Douglas", "Gabrielli", "Duda", "Dudinha", "Junior"];
+createBoxes(numBox);
 
-  companyNames.forEach((element, index) => {
-    let listQt = `There are ${index + 1} names in this list`;
-    console.log(listQt);
+//Paint the boxes
+const square = document.querySelectorAll('.box');
+
+square.forEach((div) => {
+  div.addEventListener('mouseover', () => { 
+    div.classList.add('paint');
   });
-*/
-  const square = document.querySelectorAll('.box');
-  square.forEach((div) => {
-    div.addEventListener('mouseover', () => { 
-      div.classList.add('paint');
-    });
-  });
+});
+
+});
