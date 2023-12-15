@@ -1,3 +1,4 @@
+
 body {
     margin: 0 auto;
     height: 100vh;
@@ -11,42 +12,22 @@ h1 {
     text-align: center;
 }
 
-#container {
-    height: fit-content;
-    width: fit-content;
-    border: solid black;
-}
-
-.boxLine,
-.boxColumn {
-    display: flex;
-    justify-content: space-evenly;
-    height: 600px;
-    width: 600px;
-}
-
-.boxLine {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-}
-
-
-.lines,
-.columns {
-    border: solid black 0.5px; 
-}
-
-
 #container2 {
     display: flex;
-    border: solid black;
-    height: 200px;
-    width: 200px;
-    margin-left: 5px;
+    flex-direction: column;
+    height: 600px;
+    width: 600px;
+    border: solid black 1.5px;
 }
 
-.square {
-    flex-grow: 1;
-    border: solid black;
+.row {
+    display: flex;
+    flex: auto;
+    min-height: 0px;
 }
+
+.box {
+    flex: auto;
+    border: 1px solid black;
+}
+
