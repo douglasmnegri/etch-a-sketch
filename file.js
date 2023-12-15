@@ -1,5 +1,16 @@
 const container = document.querySelector('#container');
 const button = document.querySelector('#gridnumber');
+const buttonReset = document.querySelector('#gridreset');
+const row = document.querySelector('.row');
+
+buttonReset.addEventListener('click', ()=> {
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+removeAllChildNodes(container);
+});
 
 
 button.addEventListener('click', () => {
