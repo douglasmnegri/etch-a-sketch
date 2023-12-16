@@ -108,8 +108,9 @@ square.forEach((div) => {
     let R = 239;
     let G = 157;
     let B = 6;
+    let RGB = `rgb(${R} , ${G}, ${B});`;
 
-    div.setAttribute('style', `background-color: rgb(${R} , ${G}, ${B});`);
+    div.setAttribute('style', `background-color: ${RGB}`);
 
     if(buttonColor.classList.contains('.randomize')) {
       for(let i = 0; i < 5; i ++) {
@@ -118,8 +119,24 @@ square.forEach((div) => {
       }
   }
   if(buttonEraser.classList.contains('.eraser')) {
+    div.removeAttribute('data-brightness');
     div.setAttribute('style', `background-color: white};`);
   }
+
+  if(buttonDark.classList.contains('.dark')) {
+    let currentBrightness = div.dataset.brightness || 100;
+    currentBrightness = parseInt(currentBrightness) - 10;
+
+    if(currentBrightness > 0) {
+        div.style.filter = `brightness(${currentBrightness}%)`;
+        div.dataset.brightness = currentBrightness;
+    }
+    else if(currentBrightness === 0) {
+      div.style.filter = `brightness(${currentBrightness}%)`;
+    }
+};
+
+
     });
   });
 });
