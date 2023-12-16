@@ -1,8 +1,52 @@
+//Variables that select elements from html
 const container = document.querySelector('#container');
 const buttonGrid = document.querySelector('#gridnumber');
 const buttonReset = document.querySelector('#gridreset');
-const buttonColor = document.querySelector('#randomcolor')
-const row = document.querySelector('.row');
+const buttonColor = document.querySelector('#randomcolor');
+const buttonDark = document.querySelector('#darkcolor');
+const buttonEraser = document.querySelector('#eraser');
+
+//I presume it's not needed to create an event listener for the attributes of each button, since they're all the same
+//Needs to create a function that changes the button CSS
+buttonDark.addEventListener('click', () => {
+  if(buttonDark.classList.contains('.dark')) {
+    buttonDark.classList.remove('.dark');
+    buttonDark.removeAttribute('style', `background: #e5e5e5; 
+    outline: none; 
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    box-shadow: inset 0px 0px 5px #c1c1c1;`
+    )
+  }
+  else {
+    buttonDark.classList.add('.dark');
+    buttonDark.setAttribute('style', `background: #00BFFF; 
+    outline: none; 
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    box-shadow: inset 0px 0px 5px #c1c1c1;`)
+  }
+});
+
+buttonEraser.addEventListener('click', () => {
+  if(buttonEraser.classList.contains('.eraser')) {
+    buttonEraser.classList.remove('.eraser');
+    buttonEraser.removeAttribute('style', `background: #e5e5e5; 
+    outline: none; 
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    box-shadow: inset 0px 0px 5px #c1c1c1;`
+    );
+  }
+  else {
+    buttonEraser.classList.add('.eraser');
+    buttonEraser.setAttribute('style', `background: #00BFFF; 
+    outline: none; 
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
+    box-shadow: inset 0px 0px 5px #c1c1c1;`)
+  }
+});
 
 buttonColor.addEventListener('click', () => {
   if(buttonColor.classList.contains('.randomize')) {
@@ -12,7 +56,7 @@ buttonColor.addEventListener('click', () => {
     -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
     -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
     box-shadow: inset 0px 0px 5px #c1c1c1;`
-    )
+    );
   }
   else {
     buttonColor.classList.add('.randomize');
@@ -20,7 +64,7 @@ buttonColor.addEventListener('click', () => {
     outline: none; 
     -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
     -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    box-shadow: inset 0px 0px 5px #c1c1c1;`)
+    box-shadow: inset 0px 0px 5px #c1c1c1;`);
   }
 });
 
@@ -61,17 +105,21 @@ const square = document.querySelectorAll('.box');
 
 square.forEach((div) => {
   div.addEventListener('mouseover', () => { 
-    const colors = [];
+    let R = 239;
+    let G = 157;
+    let B = 6;
+
+    div.setAttribute('style', `background-color: rgb(${R} , ${G}, ${B});`);
 
     if(buttonColor.classList.contains('.randomize')) {
-      for(let i = 0; i < 10; i ++) {
+      for(let i = 0; i < 5; i ++) {
         const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
         div.setAttribute('style', `background-color: ${randomColor};`);
       }
   }
-    else {
-      div.classList.add('paint');
-      }
+  if(buttonEraser.classList.contains('.eraser')) {
+    div.setAttribute('style', `background-color: white};`);
+  }
     });
   });
 });
