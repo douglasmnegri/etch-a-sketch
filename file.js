@@ -5,68 +5,66 @@ const buttonReset = document.querySelector('#gridreset');
 const buttonColor = document.querySelector('#randomcolor');
 const buttonDark = document.querySelector('#darkcolor');
 const buttonEraser = document.querySelector('#eraser');
+const allButtons = document.querySelectorAll('#randomcolor, #eraser, #darkcolor');
 
 //I presume it's not needed to create an event listener for the attributes of each button, since they're all the same
 //Needs to create a function that changes the button CSS
+
+allButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    allButtons.forEach((btn) => {
+      btn.removeAttribute('style');
+    });
+
+    if (buttonDark.classList.contains('dark') || buttonEraser.classList.contains('eraser') || buttonColor.classList.contains('randomize')) {
+      button.style.cssText = '';
+    } else {
+      button.style.cssText = 'background: #00BFFF; outline: none; -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; -moz-box-shadow: inset 0px 0px 5px #c1c1c1; box-shadow: inset 0px 0px 5px #c1c1c1;';
+    }
+  });
+});
+
+
 buttonDark.addEventListener('click', () => {
   if(buttonDark.classList.contains('.dark')) {
     buttonDark.classList.remove('.dark');
-    buttonDark.removeAttribute('style', `background: #e5e5e5; 
-    outline: none; 
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    box-shadow: inset 0px 0px 5px #c1c1c1;`
-    )
+    buttonDark.style.cssText = '';
+
   }
-  else {
+  else { 
     buttonDark.classList.add('.dark');
-    buttonDark.setAttribute('style', `background: #00BFFF; 
-    outline: none; 
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    box-shadow: inset 0px 0px 5px #c1c1c1;`)
+    buttonEraser.classList.remove('.eraser');
+    buttonColor.classList.remove('.randomize');
   }
 });
 
 buttonEraser.addEventListener('click', () => {
   if(buttonEraser.classList.contains('.eraser')) {
     buttonEraser.classList.remove('.eraser');
-    buttonEraser.removeAttribute('style', `background: #e5e5e5; 
-    outline: none; 
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    box-shadow: inset 0px 0px 5px #c1c1c1;`
-    );
+    buttonEraser.style.cssText = '';
+
   }
   else {
     buttonEraser.classList.add('.eraser');
-    buttonEraser.setAttribute('style', `background: #00BFFF; 
-    outline: none; 
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    box-shadow: inset 0px 0px 5px #c1c1c1;`)
+    buttonDark.classList.remove('.dark');
+    buttonColor.classList.remove('.randomize');
+
   }
 });
 
 buttonColor.addEventListener('click', () => {
   if(buttonColor.classList.contains('.randomize')) {
     buttonColor.classList.remove('.randomize');
-    buttonColor.removeAttribute('style', `background: #e5e5e5; 
-    outline: none; 
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    box-shadow: inset 0px 0px 5px #c1c1c1;`
-    );
+    buttonColor.style.cssText = '';
   }
   else {
     buttonColor.classList.add('.randomize');
-    buttonColor.setAttribute('style', `background: #00BFFF; 
-    outline: none; 
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1; 
-    box-shadow: inset 0px 0px 5px #c1c1c1;`);
+    buttonDark.classList.remove('.dark');
+    buttonEraser.classList.remove('.eraser');
+
   }
 });
+
 
 buttonReset.addEventListener('click', ()=> {
   function removeAllChildNodes(parent) {
@@ -135,8 +133,6 @@ square.forEach((div) => {
       div.style.filter = `brightness(${currentBrightness}%)`;
     }
 };
-
-
     });
   });
 });
