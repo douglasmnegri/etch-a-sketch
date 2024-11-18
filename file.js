@@ -98,17 +98,21 @@ function createBoxes(numBox) {
 
 createBoxes(numBox);
 
+
 //Paint the boxes
 const square = document.querySelectorAll('.box');
+const colorpicker = document.querySelector('#colorpicker');
+colorpicker.addEventListener('click', () => {
+
+let currentColor = colorpicker.value;
+div.setAttribute('style', `background-color: ${colorpicker.value}`);
+});
 
 square.forEach((div) => {
   div.addEventListener('mouseover', () => { 
-    let R = 239;
-    let G = 157;
-    let B = 6;
-    let RGB = `rgb(${R} , ${G}, ${B});`;
-
+    let RGB = `rgb(239, 157, 6);`;
     div.setAttribute('style', `background-color: ${RGB}`);
+
 
     if(buttonColor.classList.contains('.randomize')) {
       for(let i = 0; i < 5; i ++) {
